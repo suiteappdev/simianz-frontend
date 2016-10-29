@@ -22,7 +22,7 @@ function loginCtrl($scope, $rootScope, $API, $storage, sweetAlert, $state, $moda
                 $storage.save('token', res.token);
                 $storage.save('user', res.user);
                 var user = res.user;
-                $rootScope.fullUserName = user.name + " " + user.last_name.split(" ")[0];
+                $rootScope.fullUserName = user.first_name + " " + user.last_name.split(" ")[0];
                 $state.go('dashboard');
             }
 
