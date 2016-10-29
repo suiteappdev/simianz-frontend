@@ -5,7 +5,6 @@
  */
 
 function configState($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
-
      $httpProvider.interceptors.push(function($injector, $q) {
         
         rootScope = $injector.get('$rootScope');
@@ -163,16 +162,34 @@ function configState($stateProvider, $urlRouterProvider, $compileProvider, $http
         .state('usuario', {
             url: "/usuario",
             access: { requiredAuthentication: true },
-            templateUrl: "views/school/usuario.html",
+            templateUrl: "views/simianz/usuario.html",
             data: {
                 pageTitle: 'Usuarios'
+            }
+        })
+
+        .state('eventos', {
+            url: "/eventos",
+            access: { requiredAuthentication: true },
+            templateUrl: "views/simianz/eventos.html",
+            data: {
+                pageTitle: 'Eventos'
+            }
+        })
+        .state('asistentes', {
+            url: "/asistentes",
+            access: { requiredAuthentication: true },
+            templateUrl: "views/simianz/asistentes_eventos.html",
+            params: { asistentes: []},
+            data: {
+                pageTitle: 'Asistentes'
             }
         })
 
         // Widgets
         .state('estudiantes', {
             url: "/estudiantes",
-            access: { requiredAuthentication: false },
+            access: { requiredAuthentication: true },
             templateUrl: "views/school/estudiante.html",
             data: {
                 pageTitle: 'Estudiantes'
