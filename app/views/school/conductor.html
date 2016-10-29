@@ -1,0 +1,321 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/navigation.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper" ng-controller="conductorCtrl">
+
+
+    <div class="content" animate-panel>
+            <div class="row">
+    <div class="col-lg-8">
+        <div class="hpanel">
+            <div class="panel-heading">
+               
+                <i class="glyphicon glyphicon-road icon_front"></i>
+                <span class="titulo">Conductor  </span>
+            </div>
+            <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-8">
+                <div class="input-group buscador">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Buscar usuario" ng-model="buscador">
+                </div>
+                </div>
+                <div class="col-lg-4 text-right">
+                    <button type="button" class="btn btn-primary btn-lg btn_agregar" data-toggle="modal" data-target="#modal_user">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Agregar
+                    </button>
+ 
+                </div>
+            </div>
+           
+           
+                <div class="table-responsive">
+
+                    <table cellpadding="1" cellspacing="1" class="table">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Identificación</th>
+                            <th>Detalle </th>
+                            <th>Eliminar</th>
+                           
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="monitor in monitores|filter:buscador|orderBy:tipoOrden">
+                            
+                                <td>{{monitor.nombres}}</td>
+                                <td>{{monitor.apellidos}}</td>
+                                <td>{{monitor.n_documento}}</td>
+                                <td><button type="button" class="btn btn-info btn-xs" ng-click="verParada(monitor.n_documento)"><span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver</button></td>
+                                <td> <button type="button" class="btn btn-danger btn-xs" ng-click="eliminar(monitor.n_documento)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Eliminar</button></td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+               
+            </div>
+        </div>
+    </div>
+    <!-- inicio -->
+        <div class="col-md-4">
+
+
+        <div class="hpanel blog-box hgreen" ng-repeat="m in monitor">
+
+            <div class="panel-heading">
+                <div class="media clearfix">
+                    <a class="pull-left">
+                        <img src="images/a3.jpg" alt="profile-picture">
+                    </a>
+                    <div class="media-body">
+                        <small><span class="font-bold">{{m.nombres}} {{m.apellidos}} </span> </small>
+                        <br/>
+                        <small class="text-muted">No Identificación: {{m.n_documento}} </small>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <strong><h4>Ubicación</h4></strong> 
+                <div class="row">
+                  <div class="col-lg-12">
+                    <strong> Dirección: </strong>
+                    <spam> {{m.direccion}} </spam>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> Barrio: </strong>
+                    <spam>  {{m.barrio}} </spam> <br>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> Ciudad: </strong>
+                    <spam> {{m.ciudad}} </spam> <br>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> Teléfono: </strong>
+                    <spam> {{m.t_fijo}} </spam> <br>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> Celular: </strong>
+                    <spam> {{m.t_movil}}  </spam> <br>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> E-mail: </strong>
+                    <spam> {{m.email}}  </spam> <br>
+                  </div>
+                </div>
+                
+                
+            </div>
+            <div class="panel-body">
+              <strong><h4>Datos personales</h4></strong>
+               <div class="row">
+                  <div class="col-lg-12">
+                    <strong> Fecha de nacimiento: </strong>
+                    <spam> {{m.f_nacimiento}} </spam>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> País: </strong>
+                    <spam> {{m.pais}} </spam> <br>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> Ciudad: </strong>
+                    <spam> {{m.ciudad}} </spam> <br>
+                  </div>
+                </div>
+            </div>
+            <div class="panel-body">
+              <strong><h4>Licencia de Conducción y otros</h4></strong>
+              <div class="row">
+                
+                  <div class="col-lg-12">
+                    <strong> No Licencia: </strong>
+                    <spam> {{m.c_licencia}} </spam>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> Categoria: </strong>
+                    <spam> {{m.categoria}} </spam> <br>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> ARL: </strong>
+                    <spam>  {{m.arl}}  </spam> <br>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> Expedición: </strong>
+                    <spam> {{m.f_expedicion}} </spam> <br>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> Expiración: </strong>
+                    <spam> {{m.f_expiracion}}  </spam> <br>
+                  </div>
+                  <div class="col-lg-6">
+                    <strong> EPS: </strong>
+                    <spam> {{m.eps}} </spam> <br>
+                  </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+                <i class="fa fa-eye"> </i> Detalle Conductor
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+    </div>
+
+<div class="modal fade" id="modal_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog modal-max" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Crear Conductor</h4>
+      </div>
+      <form method="get" class="form-horizontal" ng-submit="agregar()">
+      <div class="modal-body">
+                <div class="hpanel">
+                    <div class="row form_modal">
+                        <div class="row">
+                              <legend>Datos Personales</legend>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Nombres</label>
+                                  <input type="text" class="form-control" ng-model="nombres" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Apellidos</label>
+                                  <input type="text" class="form-control" ng-model="apellidos" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Número Documento</label>
+                                  <input type="text" class="form-control" ng-model="n_documento" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Tipo de Documento</label>
+                                  <input type="text" class="form-control" ng-model="t_documento" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Cédula</label>
+                                  <input type="text" class="form-control" ng-model="cedula" >
+                              </div>
+                               <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Fecha de nacimiento</label>
+                                  <input type="date" class="form-control" ng-model="f_nacimiento" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Nacionalidad</label>
+                                  <input type="text" class="form-control" ng-model="nacionalidad" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Ciudad de nacimiento</label>
+                                  <input type="text" class="form-control" ng-model="c_nacimiento" >
+                              </div>
+                               <div class="col-lg-4">
+                                 <label for="exampleInputFile">Imagen</label>
+                                 <input type="file" id="exampleInputFile" ng-model="imagen">
+                              </div>
+                        </div>
+                        <div class="row">                      
+                              <legend>Detalles contacto</legend>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Dirección</label>
+                                  <input type="text" class="form-control" ng-model="direccion" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Barrio</label>
+                                  <input type="text" class="form-control" ng-model="barrio" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Ciudad</label>
+                                  <input type="text" class="form-control" ng-model="ciudad" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">País</label>
+                                  <input type="text" class="form-control" ng-model="pais" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Teléfono Movil</label>
+                                  <input type="text" class="form-control" ng-model="t_movil" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Teléfono Fijo</label>
+                                  <input type="text" class="form-control" ng-model="t_fijo" >
+                              </div>
+                              <div class="col-lg-4">
+                                  <label for="ejemplo_password_1">Email</label>
+                                  <input type="email" class="form-control" ng-model="email" >
+                              </div>
+                      </div>
+                      <div class="row">
+                            <legend>Licencia de conducción</legend>
+                            <div class="col-lg-4">
+                                <label for="ejemplo_password_1">No. Licencia</label>
+                                <input type="text" class="form-control" ng-model="c_licencia" >
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="ejemplo_password_1">Categoria</label>
+                                <input type="text" class="form-control" ng-model="categoria" >
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="ejemplo_password_1">ARL</label>
+                                <input type="text" class="form-control" ng-model="arl" >
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="ejemplo_password_1">Fecha de expedición </label>
+                                <input type="date" class="form-control" ng-model="f_expedicion" >
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="ejemplo_password_1">Fecha de expiración</label>
+                                <input type="date" class="form-control" ng-model="f_expiracion" >
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="ejemplo_password_1">EPS</label>
+                                <input type="text" class="form-control" ng-model="eps" >
+                            </div>
+                      </div>
+                     
+                    
+                    
+                  </div>
+            </div>
+    
+
+    </div>
+    <div class="modal-footer">
+              <button class="btn btn-primary" type="submit" value="Agregar" >Guardar</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+    <!-- Right sidebar -->
+    <div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+    <!-- Footer -->
+    <footer class="footer" ng-include="'views/common/footer.html'"></footer>
+
+
+
+</div>
+
+
+

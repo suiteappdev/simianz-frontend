@@ -1,0 +1,61 @@
+<div class="inmodal">
+    <div class="color-line"></div>
+    <div class="modal-header text-center">
+        <!--<i class="fa fa-sliders color-success h-modal-icon"></i>-->
+        <h4 class="modal-title">Editar Estudiante</h4>
+    </div>
+      <div class="modal-body">
+        <form class="form-horizontal" name="formEstudiante" ng-submit="agregar()" novalidate>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label>Nombre *</label>
+                    <input type="text" focus="true" class="form-control" name="nombre" required ng-model="formEdit.data.name">
+                </div>
+            </div>                    
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label>Apellidos *</label>
+                    <input type="text" class="form-control" name="last_name" required ng-model="formEdit.data.last_name">
+                </div>
+            </div>                    
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label>Codigo *</label>
+                    <input type="text" class="form-control" name="code" required ng-model="formEdit.data.metadata.codigo">
+                </div>
+            </div>                    
+            <div class="form-group">
+                <div class="col-lg-12">
+
+                    <label>Grado *</label>
+                    <input type="text" class="form-control" name="grade" required ng-model="formEdit.data.metadata.grado">
+
+                </div>
+            </div>                    
+            <div class="form-group">
+               <div class="col-lg-12">
+                <label for="">Ruta </label>
+                <ruta-field key="_id" label="nombre" ng-model="formEdit.data._route"></ruta-field>
+                </div> 
+            </div> 
+            <div class="form-group">
+               <div class="col-lg-12">
+                <label for="">Acudiente </label>
+                <acudiente-field required key="_id" label="fullname" ng-model="formEdit.data._responsible"></acudiente-field>
+                </div> 
+            </div> 
+            <div class="form-group">
+                <label class="col-sm-8">Parada</label>
+                <div class="col-lg-12">
+                    <parada-field key="_id" label="name" ng-model="formEdit.data._stop"></parada-field>
+                </div>
+            </div>
+        </div>
+        </form>            
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+        <button type="button" class="btn btn-primary" ng-click="ok()">Actualizar</button>
+    </div>
+</div>

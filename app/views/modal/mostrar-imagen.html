@@ -1,0 +1,12 @@
+<div class="inmodal">
+    <div class="color-line"></div>
+    <div class="modal-header text-center">
+        <h4 class="modal-title">{{image.originalname}}</h4>
+    </div>
+      <div class="modal-body text-center">
+        <img style="width:100%;max-width: 400px;max-height: 400px" ng-src="{{image.base + image.path}}">
+      </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="ok()">Ok</button>
+    </div>
+</div>

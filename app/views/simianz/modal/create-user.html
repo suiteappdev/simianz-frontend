@@ -1,0 +1,71 @@
+<div class="inmodal">
+    <div class="color-line"></div>
+    <div class="modal-header text-center">
+        <!--<i class="fa fa-sliders color-success h-modal-icon"></i>-->
+        <h4 class="modal-title">Crear Usuario</h4>
+    </div>
+      <div class="modal-body">
+            <a href="index.html" class="img-circle" style="display: block;
+                background: #00ACD8;
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+                margin-bottom: 10px;">
+            <img src="images/logo.png" alt="logo" class="m-b form-image-header" height="70"> 
+            </a>
+        <form class="form-horizontal" name="formUser" ng-submit="Create()" novalidate>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label>Nombre *</label>
+                    <input type="text" focus="true" class="form-control" name="nombre" required ng-model="form.data.first_name">
+                </div>
+            </div>                    
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label>Apellidos *</label>
+                    <input type="text" class="form-control" name="last_name" required ng-model="form.data.last_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label>Email *</label>
+                    <input type="text" class="form-control" name="email" required ng-model="form.data.email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label>Tipo *</label>
+                    <selectize 
+                        required="true"
+                        config="{
+                        create: false, 
+                        placeholder: 'Seleccione un rol', 
+                        maxItems : 1,
+                        valueField: 'role',
+                        labelField: 'role',}" 
+                        options="[{role:'Admin'}, {role:'Operador'}, {role:'Accountant'}]" ng-model="form.data.role">
+                    </selectize>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label>Contraseña *</label>
+                    <input type="password" class="form-control" name="password" required ng-model="form.data.password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label>Confirmar Contraseña *</label>
+                    <input type="password" class="form-control" name="confirmPassowrd" required ng-model="confirmPassword">
+                </div>
+            </div>                    
+        </div>
+        </form>            
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+        <button type="button" class="btn btn-primary" ng-click="ok(true)">Guardar y crear otro</button>
+        <button type="button" class="btn btn-primary" ng-click="ok()">Guardar</button>
+    </div>
+</div>

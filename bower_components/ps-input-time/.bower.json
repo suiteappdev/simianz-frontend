@@ -1,0 +1,16 @@
+{
+  "name": "ps-input-time",
+  "version": "0.2.2",
+  "main": "ps-input-time.js",
+  "homepage": "https://github.com/randallmeeker/ps-input-time",
+  "_release": "0.2.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.2",
+    "commit": "8e01baef057a6971e4620d270ac82089db007adf"
+  },
+  "_source": "https://github.com/randallmeeker/ps-input-time.git",
+  "_target": "^0.2.2",
+  "_originalSource": "https://github.com/randallmeeker/ps-input-time.git",
+  "_direct": true
+}

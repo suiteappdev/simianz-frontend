@@ -1,0 +1,81 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/navigation.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper" ng-controller="logsCtrl" ng-init="load()">
+<div class="small-header transition animated fadeIn">
+    <div class="hpanel">
+        <div class="panel-body">
+                <div id="hbreadcrumb" class="pull-right">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a ui-sref="dashboard">Dashboard</a></li>
+                        <li>
+                            <a ui-sref="logs">Logs</a></li>
+                        </li>
+                        <li class="active">
+                           <span>Detalle de log</span>
+                        </li>
+                    </ol>
+                </div>
+            <h2 class="font-light m-b-xs">
+                Detalle del log
+            </h2>
+            <small>Ultima Actualización : {{ruta.updatedAt | moments: 'YYYY - MM -DD, h:mm:ss a'}}</small>
+        </div>
+    </div>
+</div>
+<div class="normalheader transition col-lg-12">
+        <div class="hpanel">
+            <div class="panel-body">
+                <h2 class="font-light m-b-xs">
+                    {{log.entity}}
+                </h2>
+                <br />
+                <br />
+                <div class="col-lg-7" style="background-color: rgba(0, 0, 0, 0.04);padding: 10px;">
+                    <div clas="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Usuario</label>
+                                <p>{{log.user.full_name}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Ip</label>
+                                <p>{{log.IP}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Entidad</label>
+                                <p>{{log.entity}}</p>
+                            </div>                       
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Fecha</label>
+                                <p>{{log.createdDate | date :'yyyy-mm-dd hh:mm:ss a'}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Registro</label>
+                                <p>{{log.data._id}}</p>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+			<div class="panel-footer">
+                Fecha de Creación : {{ruta.createdAt | moments: 'YYYY - MM -DD, h:mm:ss a'}}
+            </div>
+        </div>
+    </div>
+    <!-- Right sidebar -->
+    <div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+    <!-- Footer -->
+    <footer class="footer" ng-include="'views/common/footer.html'"></footer>
+
+</div>
+
+
+

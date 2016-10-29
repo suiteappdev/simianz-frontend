@@ -1,0 +1,91 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/navigation.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper" ng-controller="acudienteCtrl" ng-init="load()">
+<div class="small-header transition animated fadeIn">
+    <div class="hpanel">
+        <div class="panel-body">
+                <div id="hbreadcrumb" class="pull-right">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li><a ui-sref="dashboard">Dashboard</a></li>
+                        <li>
+                            <a ui-sref="acudientes">De</a></li>
+                        </li>
+                        <li class="active">
+                           <span>Detalle de acudiente</span>
+                        </li>
+                    </ol>
+                </div>
+            <h2 class="font-light m-b-xs">
+                Detalle del acudiente
+            </h2>
+            <small>Ultima Actualización : {{acudiente.updatedAt | moments: 'YYYY - MM -DD, h:mm:ss a'}}</small>
+        </div>
+    </div>
+</div>
+<div class="normalheader transition col-lg-7">
+        <div class="hpanel">
+            <div class="panel-body">
+                <h2 class="font-light m-b-xs">
+                    {{acudiente.full_name || acudiente.name + ' ' + acudiente.last_name}}
+                </h2>
+                <br />
+                <br />
+                <div clas="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Acudiente</label>
+                        <p>{{acudiente.full_name || acudiente.name + ' ' + acudiente.last_name}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Numero de identificación</label>
+                        <p>{{acudiente.metadata.numero_documento || 'no definido'}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefono movil</label>
+                        <p>{{acudiente.metadata.telefono_movil || 'no definido'}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefono fijo</label>
+                        <p>{{acudiente.metadata.telefono_fijo || 'no definido'}}</p>
+                    </div>                    
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Correo</label>
+                        <p>{{acudiente.email || 'no definido'}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <p>{{acudiente.metadata.ciudad || 'no definido'}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Barrio</label>
+                        <p>{{acudiente.metadata.barrio || 'no definido'}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefono movil</label>
+                        <p>{{acudiente.metadata.direccion || 'no definido'}}</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+			<div class="panel-footer">
+                Fecha de Creación : {{acudiente.createdAt | moments: 'YYYY - MM -DD, h:mm:ss a'}}
+            </div>
+        </div>
+    </div>
+    <!-- Right sidebar -->
+    <div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+    <!-- Footer -->
+    <footer class="footer" ng-include="'views/common/footer.html'"></footer>
+
+</div>
+
+
+

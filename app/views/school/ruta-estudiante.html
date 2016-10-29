@@ -1,0 +1,350 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/navigation.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper" ng-controller="rutaEstudianteCtrl">
+
+
+    <div class="content" animate-panel>
+            <div class="row">
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading">
+                
+                <i class="glyphicon glyphicon-transfer icon_front"></i>
+                <span class="titulo">Cronograma Estudiantil  </span>
+            </div>
+            <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-8">
+                <div class="input-group buscador">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Buscar usuario" ng-model="buscador">
+                </div>
+                </div>
+               
+            </div>
+           
+           
+                <div class="table-responsive">
+
+                  <table cellpadding="1" cellspacing="1" class="table">
+                    
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Edificio</th>
+                            <th>Grupo</th>
+                            <th>Barrio</th>
+                            <th>Agendar</th>
+                           
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in usuarios|filter:buscador|orderBy:tipoOrden">
+                                <td>{{user.nombre}} {{user.apellido}}</td>
+                                <td>{{user.direccion}}</td>
+                                <td>{{user.edificio}}</td>
+                                <td>{{user.grupo}}</td>
+                                <td>{{user.barrio}}</td>
+                                <td> <button type="button" class="btn btn-primary btn-lg btn_agregar" data-toggle="modal" data-target="#cronograma">Agendar</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+            <div class="panel-footer">
+               Lista de  Usuarios
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+    <div class="modal fade" id="cronograma" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog modal-max modal-cronograma" role="document">
+    <div class="modal-content">
+    <form method="get" class="form-horizontal" ng-submit="agregar()">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Agendar Estudiante</h4>
+      </div>
+      <div class="modal-body">
+         <div class="hpanel">
+                    <div class="panel-heading">
+                       
+                    </div>
+                   
+                    
+
+                    <div class="row form_modal ">
+                    <div class="table-responsive">
+                    <table cellpadding="1" cellspacing="1" class="table">
+                    
+                        <thead>
+                        <tr>
+                            <th class="success">Jornada</th>
+                            <th class="success">Lunes</th>
+                            <th class="success">Martes</th>
+                            <th class="success">Miercoles</th>
+                            <th class="success">Jueves</th>
+                            <th class="success">Viernes</th>
+                            <th class="success">Sabado</th>
+                            <th class="success">Domingo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><label> Ida </label></td>
+                                <td>
+                                    <p class="text-success">{{parada.nombre_p}}</p> 
+                                    <label>Ruta</label>
+                                    <select class="form-control" ng-change="selectRuta('lunes_am', am_ruta_lunes)" ng-model="am_ruta_lunes">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                    </select>
+                                    <label>Trayecto</label>
+                                    <select class="form-control" ng-model="am_trayecto_lunes" ng-change="selectTrayecto('lunes_am', am_trayecto_lunes)">
+                                        <option ng-repeat="trayecto in lunes_am">{{trayecto.nombre}}</option>
+                                    </select>
+                                    <label>Parada</label>
+                                    <select class="form-control" ng-model="am_parada_lunes">
+                                        <option ng-repeat="parada in p_lunes_am">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td>
+                                <td> 
+                                     <label>Ruta</label>
+                                    <select class="form-control" ng-model="am_ruta_martes" ng-change="selectRuta('martes_am', am_ruta_martes)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="am_trayecto_martes" ng-change="selectTrayecto('martes_am', am_trayecto_martes)"> 
+                                         <option ng-repeat="trayecto in martes_am">{{trayecto.nombre}}</option>
+                                    </select>
+                                    <label>Parada</label>
+                                    <select class="form-control" ng-model="am_parada_martes">
+                                        <option ng-repeat="parada in p_martes_am">{{parada.nombre_p}}</option> 
+                                    </select>
+
+                                </td>
+                                <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="am_ruta_miercoles" ng-change="selectRuta('miercoles_am', am_ruta_miercoles)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="am_trayecto_miercoles" ng-change="selectTrayecto('miercoles_am', am_trayecto_miercoles)"> 
+                                        <option ng-repeat="trayecto in miercoles_am">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="am_parada_miercoles">
+                                        <option ng-repeat="parada in p_miercoles_am">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td>
+                                <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="am_ruta_jueves" ng-change="selectRuta('jueves_am', am_ruta_jueves)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="am_trayecto_jueves" ng-change="selectTrayecto('jueves_am', am_trayecto_jueves)"> 
+                                       <option ng-repeat="trayecto in jueves_am">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="am_parada_jueves">
+                                        <option ng-repeat="parada in p_jueves_am">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td>
+                                <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="am_ruta_viernes" ng-change="selectRuta('viernes_am', am_ruta_viernes)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="am_trayecto_viernes" ng-change="selectTrayecto('viernes_am', am_trayecto_viernes)"> 
+                                        <option ng-repeat="trayecto in viernes_am">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="am_parada_viernes">
+                                        <option ng-repeat="parada in p_viernes_am">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td>    
+                                   <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="am_ruta_sabado" ng-change="selectRuta('sabado_am', am_ruta_sabado)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="am_trayecto_sabado"  ng-change="selectTrayecto('sabado_am', am_trayecto_sabado)"> 
+                                        <option ng-repeat="trayecto in sabado_am">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="am_parada_sabado">
+                                        <option ng-repeat="parada in p_sabado_am">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td> 
+                                <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="am_ruta_domingo" ng-change="selectRuta('domingo_am', am_ruta_domingo)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="am_trayecto_domingo" ng-change="selectTrayecto('domingo_am', am_trayecto_domingo)"> 
+                                        <option ng-repeat="trayecto in domingo_am">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="am_parada_domingo">
+                                        <option ng-repeat="parada in p_domingo_am">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td> 
+                            </tr>
+                            <tr>
+                                <td ><label> Regreso </label></td>
+                                  <td>
+                                    <p class="text-success">{{parada.nombre_p}}</p> 
+                                    <label>Ruta</label>
+                                    <select class="form-control" ng-change="selectRuta('lunes_pm', pm_ruta_lunes)" ng-model="pm_ruta_lunes">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                    </select>
+                                    <label>Trayecto</label>
+                                    <select class="form-control" ng-model="pm_trayecto_lunes" ng-change="selectTrayecto('lunes_pm', pm_trayecto_lunes)">
+                                        <option ng-repeat="trayecto in lunes_pm">{{trayecto.nombre}}</option>
+                                    </select>
+                                    <label>Parada</label>
+                                    <select class="form-control" ng-model="pm_parada_lunes">
+                                        <option ng-repeat="parada in p_lunes_pm">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td>
+                                <td> 
+                                     <label>Ruta</label>
+                                    <select class="form-control" ng-model="pm_ruta_martes" ng-change="selectRuta('martes_pm', pm_ruta_martes)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="pm_trayecto_martes" ng-change="selectTrayecto('martes_pm', pm_trayecto_martes)"> 
+                                         <option ng-repeat="trayecto in martes_pm">{{trayecto.nombre}}</option>
+                                    </select>
+                                    <label>Parada</label>
+                                    <select class="form-control" ng-model="pm_parada_martes">
+                                        <option ng-repeat="parada in p_martes_pm">{{parada.nombre_p}}</option> 
+                                    </select>
+
+                                </td>
+                                <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="pm_ruta_miercoles" ng-change="selectRuta('miercoles_pm', pm_ruta_miercoles)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="pm_trayecto_miercoles" ng-change="selectTrayecto('miercoles_pm', pm_trayecto_miercoles)"> 
+                                        <option ng-repeat="trayecto in miercoles_pm">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="pm_parada_miercoles">
+                                        <option ng-repeat="parada in p_miercoles_pm">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td>
+                                <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="pm_ruta_jueves" ng-change="selectRuta('jueves_pm', pm_ruta_jueves)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="pm_trayecto_jueves" ng-change="selectTrayecto('jueves_pm', pm_trayecto_jueves)"> 
+                                       <option ng-repeat="trayecto in jueves_pm">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="pm_parada_jueves">
+                                        <option ng-repeat="parada in p_jueves_pm">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td>
+                                <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="pm_ruta_viernes" ng-change="selectRuta('viernes_pm', pm_ruta_viernes)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="pm_trayecto_viernes" ng-change="selectTrayecto('viernes_pm', pm_trayecto_viernes)"> 
+                                        <option ng-repeat="trayecto in viernes_pm">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="pm_parada_viernes">
+                                        <option ng-repeat="parada in p_viernes_pm">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td>    
+                                   <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="pm_ruta_sabado" ng-change="selectRuta('sabado_pm', pm_ruta_sabado)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="pm_trayecto_sabado"  ng-change="selectTrayecto('sabado_pm',pm_trayecto_sabado)"> 
+                                        <option ng-repeat="trayecto in sabado_pm">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="pm_parada_sabado">
+                                        <option ng-repeat="parada in p_sabado_pm">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td> 
+                                <td> 
+                                     <label>Ruta</label>
+                                     <select class="form-control" ng-model="pm_ruta_domingo" ng-change="selectRuta('domingo_pm', pm_ruta_domingo)">
+                                        <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                                     </select>
+                                     <label>Trayecto</label>
+                                     <select class="form-control" ng-model="pm_trayecto_domingo" ng-change="selectTrayecto('domingo_pm', pm_trayecto_domingo)"> 
+                                        <option ng-repeat="trayecto in domingo_pm">{{trayecto.nombre}}</option>
+                                     </select>
+                                     <label>Parada</label>
+                                    <select class="form-control" ng-model="pm_parada_domingo">
+                                        <option ng-repeat="parada in p_domingo_pm">{{parada.nombre_p}}</option> 
+                                    </select>
+                                </td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    </div>
+                     <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            
+                        </div>
+                    
+                    </div>
+            </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" type="submit" value="Agregar">Guardar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </form>
+
+    </div>
+  </div>
+</div>
+    </div>
+
+
+    <!-- Right sidebar -->
+    <div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+    <!-- Footer -->
+    <footer class="footer" ng-include="'views/common/footer.html'"></footer>
+
+
+
+</div>
+
+
+

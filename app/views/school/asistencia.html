@@ -1,0 +1,145 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/navigation.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper" ng-controller="asistenciaCtrl">
+
+
+    <div class="content" animate-panel>
+            <div class="row">
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading">
+                
+                <i class="glyphicon glyphicon-ok icon_front"></i>
+                <span class="titulo">Asistencia  </span>
+                
+            </div>
+            <div class="panel-body">
+            <div class="row">
+            <div class="col-lg-12">
+                    <label> Rutas</label>
+                    <div class="input-group ">
+                        <select class="form-control" ng-model="ruta" ng-change="seleccionarRuta()">
+                                <option ng-repeat="ruta in rutas">{{ruta.nombre}}</option>
+                         </select>
+                          <div class="input-group-addon">
+                       
+                        <button class="btn btn-primary btn-xs" type="submit" ng-click="getAll()">Todos los estudiantes</button>
+                     </div>
+                     </div>
+
+            </div>
+                <div class="col-lg-12">
+                <label> Trayectos</label>
+                <div class="input-group ">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-road" aria-hidden="true"> </span>
+                    </div>
+
+                    
+                     <select class="form-control" ng-model="trayecto_asociado" ng-change="seleccionarTrayecto()">
+                            <option ng-repeat="t in trayecto">{{t.nombre}}</option>
+                     </select>
+
+                    
+                </div>
+                
+<!--          <div class="input-group buscador">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"> </span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Buscar usuario" ng-model="buscador">
+                </div>
+-->
+                </div>
+                <div class="col-lg-12">
+                    
+                        <h4> Paradas</h4>
+
+                       
+                <div class="main">
+                
+                <!-- Elastislide Carousel -->
+                    <ul id="carousel" class="elastislide-list">
+                          <li ng-repeat="parada in paradas">
+                             <button class="btn btn-success paradas_asistecia" type="button" ng-click="paradaAsistencia(parada.nombre_p)" ><i class="pe-7s-help2" ></i> <br/> {{parada.numero_p}} {{parada.nombre_p}} </button>
+                        </li>
+                    </ul>
+                </div>
+                    
+                       
+
+                        
+                       
+
+               
+                </div>
+
+            </div>
+                <div class="table-responsive">
+     
+                    <table cellpadding="1" cellspacing="1" class="table">
+                    
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Nombre de Usuario</th>
+                            <th>Código</th>
+                            <th>Grado</th>
+                            <th>Parada</th>
+                            <th>Asistencia</th>
+                           
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in asistentes|filter:buscador|orderBy:tipoOrden">
+                                <td>{{user.nombre}}</td>
+                                <td>{{user.apellido}}</td>
+                                <td>{{user.nombre_usuario}}</td>
+                                <td>{{user.codigo}}</td>
+                                <td>{{user.grado}}</td>
+                                <td>{{user.parada}}</td>
+                                <td><input icheck type="checkbox" ng-model="unCheck1"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+               Estudiantes en ruta
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+    </div>
+
+
+    <!-- Right sidebar -->
+    <div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+    <!-- Footer -->
+    <footer class="footer" ng-include="'views/common/footer.html'"></footer>
+
+
+
+<script type="text/javascript">
+            
+            $( '#carousel' ).elastislide();
+
+            
+</script>
+</div>
+
+
