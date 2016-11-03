@@ -63,7 +63,7 @@ function userCtrl($scope, $API, $modalService, DTOptionsBuilder, DTColumnDefBuil
                     $modalService.incompleteForm();
                     return;
                 }else if($scope.formUser.$valid && $scope.form.data.password != $scope.confirmPassword){
-                    sweetAlert.swal("Formulario Incorrecto!", "las contraseñas no coinciden", "success");
+                    sweetAlert.swal("Formulario Incorrecto!", "las contraseñas no coinciden", "error");
                     return;
                 }
 

@@ -43,7 +43,7 @@ function eventCtrl($scope, $rootScope, $API, $storage, sweetAlert, $state, $moda
                                "nombre" : "Tomorrowland",
                                "fecha" : "Jun 2017",
                                "duracion" : "3d",
-                               "ubicacion" : [{"lat" : "9.3227598", "lng" : "-75.3005151"} ],
+                               "ubicacion" : [{"lat" : "51.08608", "lng" : "4.36633"} ],
                                "_asistentes" : [
                                            {
                                    "first_name" : "Jafid",
